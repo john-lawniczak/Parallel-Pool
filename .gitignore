@@ -1,0 +1,29 @@
+# Compiler files
+cache/
+out/
+
+# Environment
+.env
+.env.local
+
+# Coverage
+lcov.info
+
+# Docs
+docs/book/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Broadcast files (deployment artifacts)
+broadcast/
+
+# Node (if any JS tooling added)
+node_modules/
