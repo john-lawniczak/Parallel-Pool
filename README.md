@@ -119,9 +119,9 @@ cp .env.example .env
 
 ## Token: $PRLL
 
+- **Contract**: [`0x6833D899649D426e8E4712589F592814c6fE7777`](https://nad.fun/tokens/0x6833D899649D426e8E4712589F592814c6fE7777) — launched on [nad.fun](https://nad.fun)
 - **Utility**: Bond collateral for pool access
 - **Slashing**: Slashed on **fee shortfall** (non-reverting) and sent to a receiver (defaults to `0xdead`)
-- **Launch**: nad.fun
 
 ---
 
