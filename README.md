@@ -118,11 +118,33 @@ Naively bonding isn’t enough: without **bond locking during flash access**, a 
 
 ---
 
+## Autonomous Agent (LLM-Powered)
+
+ParallelPool includes an **autonomous off-chain agent** that uses GPT-4o-mini to reason about pool state, select strategies, and execute flash accesses — all with hard-coded safety limits the LLM cannot override.
+
+**Key features:**
+- **Lane-aware reasoning** — LLM picks the least-utilized lane for better parallelism
+- **Slash-and-adapt** — detects on-chain slashing, feeds it back to the LLM, which learns to avoid risky strategies
+- **9 hard safety checks** — max borrow, bond floor, gas ceiling, circuit breaker, etc.
+- **ERC-8004 identity & reputation** — on-chain agent registration + 3rd-party reputation via a separate monitor wallet
+- **3-wallet isolation** — agent, monitor, and deployer wallets are fully separated
+
+```bash
+cd agent
+cp .env.example .env   # Set OPENAI_API_KEY, AGENT_PRIVATE_KEY, MONITOR_PRIVATE_KEY
+npm install
+npm run dev
+```
+
+Full architecture: **[docs/AGENT_ARCHITECTURE.md](docs/AGENT_ARCHITECTURE.md)**
+
+---
+
 ## Links
 
 - **Hackathon**: [Moltiverse](https://moltiverse.dev/)
 - **Monad**: [monad.xyz](https://monad.xyz)
-- **Docs**: [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)
+- **Docs**: [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) | [docs/AGENT_ARCHITECTURE.md](docs/AGENT_ARCHITECTURE.md)
 
 ---
 

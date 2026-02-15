@@ -193,3 +193,9 @@ The full system has been deployed and demonstrated on **Monad testnet (chain 101
 - Lane vault addresses
 - Three on-chain demo transactions proving happy-path fee routing and proportional slashing
 - Reproduction instructions
+
+## Autonomous Agent
+
+An LLM-powered off-chain agent operates on top of the deployed contracts, using GPT-4o-mini to reason about lane utilization, market signals, and its own execution history (including slash events) to autonomously execute flash access strategies. The agent registers an on-chain identity and builds verifiable reputation via ERC-8004.
+
+See [AGENT_ARCHITECTURE.md](./AGENT_ARCHITECTURE.md) for the full design.
