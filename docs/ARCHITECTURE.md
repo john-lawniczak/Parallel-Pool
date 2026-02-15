@@ -186,9 +186,9 @@ Run all tests:
 forge test --offline
 ```
 
-## Testnet Deployment
+## Mainnet Deployment
 
-The full system has been deployed and demonstrated on **Monad testnet (chain 10143)**. See [DEPLOYMENT.md](./DEPLOYMENT.md) for:
+The full system has been deployed and demonstrated on **Monad Mainnet (chain 143)**. See [DEPLOYMENT.md](./DEPLOYMENT.md) for:
 - All contract addresses and deploy tx hashes
 - Lane vault addresses
 - Three on-chain demo transactions proving happy-path fee routing and proportional slashing

@@ -4,7 +4,7 @@ import {
   AGENT_PRIVATE_KEY,
   ADDRESSES,
   IDENTITY_REGISTRY_ABI,
-  monadTestnet,
+  monadChain,
 } from "./config.js";
 import { getPublicClient } from "./monitor.js";
 import { getWalletClient } from "./executor.js";
@@ -79,7 +79,7 @@ export async function ensureIdentity(): Promise<AgentIdentity> {
       functionName: "register",
       args: [uri],
       account,
-      chain: monadTestnet,
+      chain: monadChain,
     });
 
     const receipt = await pub.waitForTransactionReceipt({

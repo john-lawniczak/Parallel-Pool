@@ -11,7 +11,7 @@ function requireEnv(key: string): string {
 }
 
 export const OPENAI_API_KEY = requireEnv("OPENAI_API_KEY");
-export const MONAD_RPC_URL = process.env.MONAD_RPC_URL ?? "https://testnet-rpc.monad.xyz";
+export const MONAD_RPC_URL = process.env.MONAD_RPC_URL ?? "https://rpc.monad.xyz";
 export const AGENT_PRIVATE_KEY = requireEnv("AGENT_PRIVATE_KEY") as `0x${string}`;
 // Separate monitor wallet for ERC-8004 reputation (spec requires feedback NOT from agent owner)
 function parseOptionalPrivateKey(key: string | undefined): `0x${string}` | undefined {
@@ -26,9 +26,9 @@ export const MONITOR_PRIVATE_KEY = parseOptionalPrivateKey(process.env.MONITOR_P
 
 // ─── Chain Definition (single source of truth) ──────────────────────────────
 
-export const monadTestnet = {
-  id: 10143,
-  name: "Monad Testnet",
+export const monadChain = {
+  id: 143,
+  name: "Monad",
   nativeCurrency: { name: "MON", symbol: "MON", decimals: 18 },
   rpcUrls: {
     default: { http: [MONAD_RPC_URL] },
@@ -39,16 +39,16 @@ export const monadTestnet = {
 
 export const CYCLE_INTERVAL_MS = Number(process.env.CYCLE_INTERVAL_MS ?? "15000");
 
-// ─── Deployed Contract Addresses (Monad Testnet) ────────────────────────────
+// ─── Deployed Contract Addresses (Monad Mainnet) ────────────────────────────
 
 export const ADDRESSES = {
-  poolToken: "0x1BE0E7FF9b692C05549d53c90fCA059823797216" as const,
-  prllToken: "0x65b69850CCddAd0247E529101A4f2B3394c4790d" as const,
-  bondRegistry: "0x0CB51160f40c7ec20583FD68ed86A07e534DBeF4" as const,
-  parallelPool: "0x4908eCb26738f1e2912680D001d37d735790944e" as const,
-  swapModule: "0xD99359E7fAcB9C10DE188c92fc7D6b1d3BbCbe8E" as const,
-  arbModule: "0x3c322a224bd2c4ef90652a70e36447a301944A37" as const,
-  badModule: "0xeFD6733b7f9453359f75c8ad7cC5518282e667cf" as const, // MockBadModule — triggers slash
+  poolToken: "0x0c6ADF5E204C0Cf5B5c97442464d4c25a5155b4F" as const,
+  prllToken: "0x0d31FF18ff8B26F3861737bFd83Bd4617AA1e3F5" as const,
+  bondRegistry: "0xD11ce2204499367f58d12E0f2364Ac0b4c8f79C8" as const,
+  parallelPool: "0xa9bb3620c2335e30DC8e6dAd55440400EDd7a366" as const,
+  swapModule: "0xE18911EB24450Bc5319598A885a85d7B16EC6bdE" as const,
+  arbModule: "0xA7ddE29B5Abd8DB7F6663CCA82C2812728f5E04a" as const,
+  badModule: "0x8Afb2Fd8cADD2a51DA81cCCa84c15113E632CB6a" as const, // MockBadModule — triggers slash
   // ERC-8004 registries (Monad mainnet — also available on testnet)
   identityRegistry: "0x8004A169FB4a3325136EB29fA0ceB6D2e539a432" as const,
   reputationRegistry: "0x8004BAa17C55a88189AE136b182e5fdA19dE9b63" as const,

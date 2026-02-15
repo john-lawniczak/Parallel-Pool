@@ -12,7 +12,7 @@ import {
   MONAD_RPC_URL,
   ADDRESSES,
   REPUTATION_REGISTRY_ABI,
-  monadTestnet,
+  monadChain,
 } from "./config.js";
 import { getPublicClient } from "./monitor.js";
 import { getWalletClient } from "./executor.js";
@@ -32,7 +32,7 @@ function getMonitorWallet(): WalletClient | null {
     monitorAddress = monitorAccount.address;
     monitorWallet = createWalletClient({
       account: monitorAccount,
-      chain: monadTestnet,
+      chain: monadChain,
       transport: http(MONAD_RPC_URL),
     });
     return monitorWallet;
@@ -116,7 +116,7 @@ export async function submitReputation(
         zeroHash, // feedbackHash (optional)
       ],
       account: feedbackAccount,
-      chain: monadTestnet,
+      chain: monadChain,
     });
 
     await pub.waitForTransactionReceipt({ hash, timeout: 30_000 });

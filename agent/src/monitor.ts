@@ -9,7 +9,7 @@ import {
   ADDRESSES,
   PARALLEL_POOL_ABI,
   BOND_REGISTRY_ABI,
-  monadTestnet,
+  monadChain,
 } from "./config.js";
 import type { PoolState, PriceSignal } from "./types.js";
 
@@ -20,7 +20,7 @@ let client: PublicClient;
 export function getPublicClient(): PublicClient {
   if (!client) {
     client = createPublicClient({
-      chain: monadTestnet,
+      chain: monadChain,
       transport: http(MONAD_RPC_URL),
     });
   }
@@ -34,7 +34,7 @@ export async function readPoolState(callerAddress: Address): Promise<PoolState> 
   const poolAddr = ADDRESSES.parallelPool as Address;
   const bondAddr = ADDRESSES.bondRegistry as Address;
 
-  // Read all state in parallel (individual calls — Monad testnet has no multicall3)
+  // Read all state in parallel (individual calls — Monad has no multicall3)
   const [lane0, lane1, lane2, lane3, totalLiq, bondBal, lockedBond, gasPrice] =
     await Promise.all([
       pub.readContract({ address: poolAddr, abi: PARALLEL_POOL_ABI, functionName: "laneLiquidity", args: [0n] }).catch(() => 0n) as Promise<bigint>,

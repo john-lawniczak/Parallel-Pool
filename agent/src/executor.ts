@@ -6,7 +6,7 @@ import {
   type Hash,
 } from "viem";
 import { privateKeyToAccount } from "viem/accounts";
-import { AGENT_PRIVATE_KEY, MONAD_RPC_URL, ADDRESSES, MODULE_ABI, monadTestnet } from "./config.js";
+import { AGENT_PRIVATE_KEY, MONAD_RPC_URL, ADDRESSES, MODULE_ABI, monadChain } from "./config.js";
 import { getPublicClient } from "./monitor.js";
 
 // ─── Wallet client (singleton) ──────────────────────────────────────────────
@@ -18,7 +18,7 @@ export function getWalletClient(): WalletClient {
     const account = privateKeyToAccount(AGENT_PRIVATE_KEY);
     wallet = createWalletClient({
       account,
-      chain: monadTestnet,
+      chain: monadChain,
       transport: http(MONAD_RPC_URL),
     });
   }
@@ -81,7 +81,7 @@ export async function executeStrategy(
       functionName: "execute",
       args: [amount],
       account: account,
-      chain: monadTestnet,
+      chain: monadChain,
     });
 
     // Wait for receipt

@@ -9,7 +9,7 @@ import { MockSwapModule } from "../src/mocks/MockSwapModule.sol";
 import { MockArbModule } from "../src/mocks/MockArbModule.sol";
 import { MockBadModule } from "../src/mocks/MockBadModule.sol";
 
-/// @notice Deploy + demo on Monad testnet.
+/// @notice Deploy + demo on Monad.
 ///         Everything runs from the deployer wallet (single broadcast).
 ///         Deployer bonds itself, registers modules as callbacks, and
 ///         calls flashAccess directly — proving pull-based fee routing +

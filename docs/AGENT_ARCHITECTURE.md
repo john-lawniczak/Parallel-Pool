@@ -233,7 +233,7 @@ cp .env.example .env
 #   OPENAI_API_KEY=sk-...
 #   AGENT_PRIVATE_KEY=0x... (dedicated hot wallet with MON for gas)
 #   MONITOR_PRIVATE_KEY=0x... (separate wallet for 3rd-party reputation)
-#   MONAD_RPC_URL=https://testnet-rpc.monad.xyz
+#   MONAD_RPC_URL=https://rpc.monad.xyz
 
 npm install
 npm run dev
