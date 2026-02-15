@@ -38,11 +38,12 @@ This aligns naturally with intent-based and agent-style execution models (e.g., 
 
 ---
 
-### 4. Agent-Native Integrations
-ParallelPool can act as a capability layer for autonomous agents by supporting:
-- delegated or relayed execution
+### 4. Agent-Native Integrations (partially implemented)
+ParallelPool already includes an [LLM-powered autonomous agent](./AGENT_ARCHITECTURE.md) that uses GPT-4o-mini to reason about pool state, execute flash access strategies, and build on-chain reputation via ERC-8004. Future extensions include:
 - per-agent bond isolation to limit blast radius
 - explicit capability scoping for liquidity access
+- multi-agent coordination across lanes (agent-to-agent negotiation for lane selection)
+- on-chain strategy validation via ERC-8004's future Validation Registry
 
 ---
 

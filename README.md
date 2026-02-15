@@ -65,20 +65,41 @@ forge script script/Demo.s.sol -vvvv
 
 ---
 
-## Monad Testnet
+## Monad Mainnet Deployment
+
+**Chain:** Monad Mainnet (chain ID 143) | **Deployer:** `0xf11e7F83B59aD1dF23EfF9Bf4A5E2b4b3ab756Aa`
+
+| Contract | Address |
+|----------|---------|
+| Pool Token (POOL) | [`0x0c6ADF5E204C0Cf5B5c97442464d4c25a5155b4F`](https://monadexplorer.com/address/0x0c6ADF5E204C0Cf5B5c97442464d4c25a5155b4F) |
+| PRLL Token | [`0x0d31FF18ff8B26F3861737bFd83Bd4617AA1e3F5`](https://monadexplorer.com/address/0x0d31FF18ff8B26F3861737bFd83Bd4617AA1e3F5) |
+| BondRegistry | [`0xD11ce2204499367f58d12E0f2364Ac0b4c8f79C8`](https://monadexplorer.com/address/0xD11ce2204499367f58d12E0f2364Ac0b4c8f79C8) |
+| **ParallelPool** | [**`0xa9bb3620c2335e30DC8e6dAd55440400EDd7a366`**](https://monadexplorer.com/address/0xa9bb3620c2335e30DC8e6dAd55440400EDd7a366) |
+| MockSwapModule | [`0xE18911EB24450Bc5319598A885a85d7B16EC6bdE`](https://monadexplorer.com/address/0xE18911EB24450Bc5319598A885a85d7B16EC6bdE) |
+| MockArbModule | [`0xA7ddE29B5Abd8DB7F6663CCA82C2812728f5E04a`](https://monadexplorer.com/address/0xA7ddE29B5Abd8DB7F6663CCA82C2812728f5E04a) |
+| MockBadModule | [`0x8Afb2Fd8cADD2a51DA81cCCa84c15113E632CB6a`](https://monadexplorer.com/address/0x8Afb2Fd8cADD2a51DA81cCCa84c15113E632CB6a) |
+
+**Config:** 4 lanes, 10 bps fee, 1000 PRLL min bond | **Slash receiver:** `0x...dEaD` (burn)
+
+All 3 demo scenarios (swap, arb, proportional slash) executed successfully on-chain. See [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md) for full tx hashes and on-chain proof.
+
+### Prerequisites
+
+**Monad Foundry** is required for accurate gas estimation on Monad. Standard Foundry underestimates gas because Monad charges based on `gas_limit` (not `gas_used`) and has different opcode pricing. See [Monad Foundry docs](https://docs.monad.xyz/tooling-and-infra/toolkits/monad-foundry).
 
 ```bash
-# 1) Create env file
+curl -L https://raw.githubusercontent.com/category-labs/foundry/monad/foundryup/install | bash
+foundryup --network monad
+```
+
+### Deploy & Run Demo
+
+```bash
 cp .env.example .env
+# Set MONAD_MAINNET_RPC_URL, ACCOUNT_NAME, DEPLOYER_ADDRESS
 
-# 2) Set MONAD_RPC_URL and ACCOUNT_NAME in .env
-#    (Create/import the keystore first: `cast wallet import $ACCOUNT_NAME --interactive`)
-
-# 3) Deploy contracts
-./script/deploy-testnet.sh
-
-# 4) Run demo transactions on testnet
-./script/demo-testnet.sh
+./script/deploy-mainnet.sh    # Deploy contracts
+./script/demo-mainnet.sh      # Run demo (swap, arb, slash)
 ```
 
 ---
@@ -118,11 +139,33 @@ Naively bonding isn’t enough: without **bond locking during flash access**, a 
 
 ---
 
+## Autonomous Agent (LLM-Powered)
+
+ParallelPool includes an **autonomous off-chain agent** that uses GPT-4o-mini to reason about pool state, select strategies, and execute flash accesses — all with hard-coded safety limits the LLM cannot override.
+
+**Key features:**
+- **Lane-aware reasoning** — LLM picks the least-utilized lane for better parallelism
+- **Slash-and-adapt** — detects on-chain slashing, feeds it back to the LLM, which learns to avoid risky strategies
+- **9 hard safety checks** — max borrow, bond floor, gas ceiling, circuit breaker, etc.
+- **ERC-8004 identity & reputation** — on-chain agent registration + 3rd-party reputation via a separate monitor wallet
+- **3-wallet isolation** — agent, monitor, and deployer wallets are fully separated
+
+```bash
+cd agent
+cp .env.example .env   # Set OPENAI_API_KEY, AGENT_PRIVATE_KEY, MONITOR_PRIVATE_KEY
+npm install
+npm run dev
+```
+
+Full architecture: **[docs/AGENT_ARCHITECTURE.md](docs/AGENT_ARCHITECTURE.md)**
+
+---
+
 ## Links
 
 - **Hackathon**: [Moltiverse](https://moltiverse.dev/)
 - **Monad**: [monad.xyz](https://monad.xyz)
-- **Docs**: [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)
+- **Docs**: [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) | [docs/AGENT_ARCHITECTURE.md](docs/AGENT_ARCHITECTURE.md)
 
 ---
 
