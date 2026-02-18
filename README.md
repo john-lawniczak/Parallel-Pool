@@ -71,17 +71,25 @@ forge script script/Demo.s.sol -vvvv
 
 | Contract | Address |
 |----------|---------|
-| Pool Token (POOL) | [`0x0c6ADF5E204C0Cf5B5c97442464d4c25a5155b4F`](https://monadexplorer.com/address/0x0c6ADF5E204C0Cf5B5c97442464d4c25a5155b4F) |
-| PRLL Token | [`0x0d31FF18ff8B26F3861737bFd83Bd4617AA1e3F5`](https://monadexplorer.com/address/0x0d31FF18ff8B26F3861737bFd83Bd4617AA1e3F5) |
-| BondRegistry | [`0xD11ce2204499367f58d12E0f2364Ac0b4c8f79C8`](https://monadexplorer.com/address/0xD11ce2204499367f58d12E0f2364Ac0b4c8f79C8) |
-| **ParallelPool** | [**`0xa9bb3620c2335e30DC8e6dAd55440400EDd7a366`**](https://monadexplorer.com/address/0xa9bb3620c2335e30DC8e6dAd55440400EDd7a366) |
-| MockSwapModule | [`0xE18911EB24450Bc5319598A885a85d7B16EC6bdE`](https://monadexplorer.com/address/0xE18911EB24450Bc5319598A885a85d7B16EC6bdE) |
-| MockArbModule | [`0xA7ddE29B5Abd8DB7F6663CCA82C2812728f5E04a`](https://monadexplorer.com/address/0xA7ddE29B5Abd8DB7F6663CCA82C2812728f5E04a) |
-| MockBadModule | [`0x8Afb2Fd8cADD2a51DA81cCCa84c15113E632CB6a`](https://monadexplorer.com/address/0x8Afb2Fd8cADD2a51DA81cCCa84c15113E632CB6a) |
+| Pool Token (POOL) | [`0x0c6ADF5E204C0Cf5B5c97442464d4c25a5155b4F`](https://monadscan.com/address/0x0c6ADF5E204C0Cf5B5c97442464d4c25a5155b4F) |
+| PRLL Token | [`0x0d31FF18ff8B26F3861737bFd83Bd4617AA1e3F5`](https://monadscan.com/address/0x0d31FF18ff8B26F3861737bFd83Bd4617AA1e3F5) |
+| BondRegistry | [`0xD11ce2204499367f58d12E0f2364Ac0b4c8f79C8`](https://monadscan.com/address/0xD11ce2204499367f58d12E0f2364Ac0b4c8f79C8) |
+| **ParallelPool** | [**`0xa9bb3620c2335e30DC8e6dAd55440400EDd7a366`**](https://monadscan.com/address/0xa9bb3620c2335e30DC8e6dAd55440400EDd7a366) |
+| MockSwapModule | [`0xE18911EB24450Bc5319598A885a85d7B16EC6bdE`](https://monadscan.com/address/0xE18911EB24450Bc5319598A885a85d7B16EC6bdE) |
+| MockArbModule | [`0xA7ddE29B5Abd8DB7F6663CCA82C2812728f5E04a`](https://monadscan.com/address/0xA7ddE29B5Abd8DB7F6663CCA82C2812728f5E04a) |
+| MockBadModule | [`0x8Afb2Fd8cADD2a51DA81cCCa84c15113E632CB6a`](https://monadscan.com/address/0x8Afb2Fd8cADD2a51DA81cCCa84c15113E632CB6a) |
 
 **Config:** 4 lanes, 10 bps fee, 1000 PRLL min bond | **Slash receiver:** `0x...dEaD` (burn)
 
 All 3 demo scenarios (swap, arb, proportional slash) executed successfully on-chain. See [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md) for full tx hashes and on-chain proof.
+
+### Verified Contracts
+
+All contracts are verified on 3 block explorers:
+
+- [Monadscan](https://monadscan.com/address/0xa9bb3620c2335e30DC8e6dAd55440400EDd7a366#code) (Etherscan)
+- [SocialScan](https://monad.socialscan.io/address/0xa9bb3620c2335e30DC8e6dAd55440400EDd7a366#code)
+- [MonadVision](https://monadvision.com/address/0xa9bb3620c2335e30DC8e6dAd55440400EDd7a366?tab=Contract) (BlockVision)
 
 ### Prerequisites
 
